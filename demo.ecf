@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<system xmlns="http://www.eiffel.com/developers/xml/configuration-1-19-0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.eiffel.com/developers/xml/configuration-1-19-0 http://www.eiffel.com/developers/xml/configuration-1-19-0.xsd" name="demo" uuid="1EBCF117-4215-4E26-B295-2CCFB62D5D17">
+	<target name="demo">
+		<root class="APPLICATION" feature="make"/>
+		<file_rule>
+			<exclude>/CVS$</exclude>
+			<exclude>/EIFGENs$</exclude>
+			<exclude>/\.git$</exclude>
+			<exclude>/\.svn$</exclude>
+		</file_rule>
+		<option warning="true" manifest_array_type="mismatch_warning">
+			<assertions precondition="true" postcondition="true" check="true" invariant="true" loop="true" supplier_precondition="true"/>
+		</option>
+		<setting name="console_application" value="true"/>
+		<capability>
+			<catcall_detection support="none"/>
+			<concurrency support="thread" use="thread"/>
+			<void_safety support="all"/>
+		</capability>
+		<precompile name="base-mt-safe" location="\home\zelarpmaster\.es\eiffel_user_files\18.11\precomp\spec\unix\base-mt-safe.ecf"/>
+		<library name="base" location="$ISE_LIBRARY\library\base\base.ecf"/>
+		<library name="eiffel-futures" location="\mnt\data\Eiffel\EiffelFutures\eiffel-futures.ecf"/>
+		<library name="net_http_client" location="$ISE_LIBRARY\contrib\library\network\http_client\net_http_client.ecf"/>
+		<library name="thread" location="$ISE_LIBRARY\library\thread\thread-safe.ecf"/>
+		<library name="time" location="$ISE_LIBRARY\library\time\time.ecf"/>
+		<cluster name="demo" location=".\" recursive="true"/>
+	</target>
+</system>
