@@ -19,6 +19,7 @@
 		</capability>
 		<precompile name="base-mt-safe" location="$ISE_PRECOMP\base-mt-safe.ecf"/>
 		<library name="base" location="$ISE_LIBRARY\library\base\base.ecf"/>
+		<library name="eiffel-futures" location="D:\Uni\IFT630\EiffelFutures\eiffel-futures.ecf"/>
 		<library name="net_http_client" location="$ISE_LIBRARY\contrib\library\network\http_client\net_http_client.ecf"/>
 		<library name="thread" location="$ISE_LIBRARY\library\thread\thread-safe.ecf"/>
 		<library name="time" location="$ISE_LIBRARY\library\time\time.ecf"/>
