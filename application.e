@@ -18,8 +18,11 @@ feature {NONE} -- Initialization
 			-- Run application.
 		do
 			create event_loop.make
-			timeit("SYNC", agent sync_queries(100))
-			timeit("ASYNC", agent async_queries(100))
+			across 1 |..| 1 as la_nb loop
+				print("Test #" + la_nb.item.out + "%N")
+				timeit("SYNC", agent sync_queries(100))
+				timeit("ASYNC", agent async_queries(100))
+			end
 		end
 
 feature {NONE} -- Implementation
@@ -63,15 +66,13 @@ feature {NONE} -- Implementation
 	async_queries(a_num: INTEGER)
 		local
 			l_tasks: LIST[TASK]
-			l_task: TASK
 		do
 			create {LINKED_LIST[TASK]} l_tasks.make
 
 			across 1 |..| a_num as la_num loop
-				l_task := event_loop.create_task(agent async_query)
-				event_loop.call_soon(l_task)
-				l_tasks.extend(l_task)
+				l_tasks.extend(event_loop.create_task(agent async_query))
 			end
+			print("All tasks have been created%N")
 
 			event_loop.run_until_complete(event_loop.gather(l_tasks))
 			print("%N")
