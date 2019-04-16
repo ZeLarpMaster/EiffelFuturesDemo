@@ -26,6 +26,8 @@ feature {NONE} -- Implementation
 
 	event_loop: EVENT_LOOP
 
+	url: STRING_8 = "http://www.google.ca"
+
 	timeit(a_name: READABLE_STRING_GENERAL; a_proc: PROCEDURE[TUPLE])
 		local
 			l_before, l_after: TIME
@@ -45,7 +47,7 @@ feature {NONE} -- Implementation
 			l_client: NET_HTTP_CLIENT_SESSION
 			l_response: HTTP_CLIENT_RESPONSE
 		do
-			create l_client.make("http://perdu.com")
+			create l_client.make(url)
 			l_client.set_timeout(1)
 			across 1 |..| a_num as la_num loop
 				l_response := l_client.get("/", Void)
@@ -80,7 +82,7 @@ feature {NONE} -- Implementation
 			l_client: ASYNC_HTTP_CLIENT
 			l_future: FUTURE[HTTP_CLIENT_RESPONSE]
 		do
-			create l_client.make("http://perdu.com")
+			create l_client.make(url)
 			l_future := l_client.get("/")
 			event_loop.await(l_future)
 
