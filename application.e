@@ -46,21 +46,27 @@ feature {NONE} -- Implementation
 		end
 
 	sync_queries(a_num: INTEGER)
+		do
+			across 1 |..| a_num as la_num loop
+				sync_query
+			end
+			print("%N")
+		end
+
+	sync_query
 		local
 			l_client: NET_HTTP_CLIENT_SESSION
 			l_response: HTTP_CLIENT_RESPONSE
 		do
 			create l_client.make(url)
 			l_client.set_timeout(1)
-			across 1 |..| a_num as la_num loop
-				l_response := l_client.get("/", Void)
-				if l_response.status /= 200 then
-					print("X")
-				else
-					print("O")
-				end
+
+			l_response := l_client.get("/", Void)
+			if l_response.status /= 200 then
+				print("X")
+			else
+				print("O")
 			end
-			print("%N")
 		end
 
 	async_queries(a_num: INTEGER)
